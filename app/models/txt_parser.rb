@@ -1,4 +1,4 @@
-class LibraryParser
+class TxtParser < ActionController::Base
   attr_writer :files
   attr_reader :path
 
@@ -6,18 +6,19 @@ class LibraryParser
     new.call
   end
   
-  def initialize(path = "/Users/johnrichardson/Development/data/feed_test")
+  def initialize(path = "/Users/johnrichardson/Development/data/feed")
     @path = path
   end
 
-  def build_row(txtfile_name)
-    DateLookup.new.tap do |s| 
-      s.name = txtfile_name
+  def build_row(date_string)
+    DateLookup.new.tap do |d| 
+      d.history = date_string
+      d.save
     end
   end
 
   def files
-    @files ||= Dir.entries(path)[2..-1]
+    @files ||= Dir.entries(path)[3..-1]
   end
 
   def call
@@ -27,6 +28,7 @@ class LibraryParser
   end
 
   def parse_filename(file_name)
-    file_name.gsub("citi_", "").gsub("_","")
+    DateTime.parse(file_name.gsub("citi_", "").gsub("_",""))
   end
+
 end

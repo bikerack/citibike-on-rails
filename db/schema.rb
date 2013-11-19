@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131119023120) do
+ActiveRecord::Schema.define(version: 20131119153543) do
+
+  create_table "date_lookups", force: true do |t|
+    t.datetime "history"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "stations", force: true do |t|
     t.string   "address"
