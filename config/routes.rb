@@ -1,4 +1,10 @@
 CitibikeOnRails::Application.routes.draw do
+  resources :destinations
+
+  resources :origins
+
+  resources :trips
+
   resources :date_lookups
 
   resources :stations

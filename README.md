@@ -8,24 +8,23 @@ stations
   long
 
 trips
-
-date_lookup
+  origin_id
+  destination_id
 
 origins
   address
+  lat
+  long
   station_id
 
 destinations
   address
+  lat
+  long
   station_id
 
-user_origins
-  user_id
-  origin_id
-
-user_destinations
-  user_id
-  destination_id
+date_lookup
+  history
 
 stations_status
   station_id
@@ -73,7 +72,7 @@ stations_status
 
 ####Application Workflow:
 
-User index page/form
+Trip index page/form
   insert current location
   insert destination
   insert trip length in minutes (15,30,45)

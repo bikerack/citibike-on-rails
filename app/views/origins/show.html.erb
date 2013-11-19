@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @origin.address %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @origin.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @origin.longitude %>
+</p>
+
+
+<!-- <h3>Nearby Origins</h3>
+<ul>
+<#% for origin in @origin.nearbys(0.25) %>
+  <li><#%= link_to origin.address, origin %> (<#%= origin.distance.round(2) %> miles)</li>
+<#% end %>
+</ul> -->
+
+<h3>Nearby Stations</h3>
+<% Station.near([@origin.latitude, @origin.longitude], 0.25).each do |station| %>
+  <%= link_to station.address, station %></br>
+<% end %></br></br>
+
+
+<%= link_to 'Edit', edit_origin_path(@origin) %> |
+<%= link_to 'Back', origins_path %>

@@ -11,13 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131119153543) do
+ActiveRecord::Schema.define(version: 20131119203813) do
 
   create_table "date_lookups", force: true do |t|
     t.datetime "history"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "destinations", force: true do |t|
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "station_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "destinations", ["station_id"], name: "index_destinations_on_station_id"
+
+  create_table "origins", force: true do |t|
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "station_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "origins", ["station_id"], name: "index_origins_on_station_id"
 
   create_table "stations", force: true do |t|
     t.string   "address"
@@ -26,5 +48,15 @@ ActiveRecord::Schema.define(version: 20131119153543) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "trips", force: true do |t|
+    t.integer  "origin_id"
+    t.integer  "destination_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "trips", ["destination_id"], name: "index_trips_on_destination_id"
+  add_index "trips", ["origin_id"], name: "index_trips_on_origin_id"
 
 end

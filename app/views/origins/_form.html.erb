@@ -1,0 +1,33 @@
+<%= form_for(@origin) do |f| %>
+  <% if @origin.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@origin.errors.count, "error") %> prohibited this origin from being saved:</h2>
+
+      <ul>
+      <% @origin.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :latitude %><br>
+    <%= f.text_field :latitude %>
+  </div>
+  <div class="field">
+    <%= f.label :longitude %><br>
+    <%= f.text_field :longitude %>
+  </div>
+  <div class="field">
+    <%= f.label :station_id %><br>
+    <%= f.text_field :station_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
