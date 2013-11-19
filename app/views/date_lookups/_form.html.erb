@@ -1,0 +1,21 @@
+<%= form_for(@date_lookup) do |f| %>
+  <% if @date_lookup.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@date_lookup.errors.count, "error") %> prohibited this date_lookup from being saved:</h2>
+
+      <ul>
+      <% @date_lookup.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

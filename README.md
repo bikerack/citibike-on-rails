@@ -2,14 +2,13 @@
 
 
 ####Data Structure:
-
-users
-  name
-
 stations
   address
   lat
   long
+
+trips
+  
 
 origins
   address
@@ -26,10 +25,6 @@ user_origins
 user_destinations
   user_id
   destination_id
-
-trips
-  origin_id
-  destination_id 
 
 stations_status
   station_id

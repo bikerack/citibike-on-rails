@@ -1,0 +1,27 @@
+<h1>Listing date_lookups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @date_lookups.each do |date_lookup| %>
+      <tr>
+        <td><%= date_lookup.name %></td>
+        <td><%= link_to 'Show', date_lookup %></td>
+        <td><%= link_to 'Edit', edit_date_lookup_path(date_lookup) %></td>
+        <td><%= link_to 'Destroy', date_lookup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Date lookup', new_date_lookup_path %>
