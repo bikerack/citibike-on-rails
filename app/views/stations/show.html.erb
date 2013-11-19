@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @station.address %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @station.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @station.longitude %>
+</p>
+
+
+<h3>Nearby Stations</h3>
+<ul>
+<% for station in @station.nearbys(0.25) %>
+  <li><%= link_to station.address, station %> (<%= station.distance.round(2) %> miles)</li>
+<% end %>
+</ul>
+
+<%= link_to 'Edit', edit_station_path(@station) %> |
+<%= link_to 'Back', stations_path %>
