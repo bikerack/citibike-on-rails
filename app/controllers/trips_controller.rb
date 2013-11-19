@@ -25,9 +25,9 @@ class TripsController < ApplicationController
   # POST /trips
   # POST /trips.json
   def create
-    @origin = Origin.new(trip_params[:origin])
+    @origin = Origin.new(:address => trip_params[:origin][:address].concat(" NYC"))
     @origin.save
-    @destination = Destination.new(trip_params[:destination])
+    @destination = Destination.new(:address => trip_params[:destination][:address].concat(" NYC"))
     @destination.save
     @trip = Trip.new(:origin_id => @origin.id, :destination_id => @destination.id)
     @trip.save

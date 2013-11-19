@@ -5,20 +5,17 @@
   <%= @trip.origin.address %>
 </p>
 
-<h3>Nearby Stations to origin</h3>
+<h3>Nearby Stations to Origin</h3>
 <% Station.near([@trip.origin.latitude, @trip.origin.longitude], 0.25).each do |station| %>
-  <%= link_to station.address, station %></br>
+  <%= link_to station.address, station %> (<%= station.distance.round(2) %> miles)</br>
+<% end %></br></br>
+
+<h3>Nearby Stations to Destination</h3>
+<% Station.near([@trip.destination.latitude, @trip.destination.longitude], 0.25).each do |station| %>
+  <%= link_to station.address, station %> (<%= station.distance.round(2) %> miles)</br>
 <% end %></br></br>
 
 
-
-<!-- <ul>
-<#% for station in @trip.origin.nearbys(0.25) %>
-  <li> <#%= station %></li>
-  <li><#%= link_to station.address, station %> (<#%= station.distance.round(2) %> miles)</li>
-<#% end %>
-</ul>
- -->
 <p>
   <strong>Destination:</strong>
   <%= @trip.destination.address %>
