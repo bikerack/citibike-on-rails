@@ -4,10 +4,22 @@ Data Structure:
 users
   name  
 
+user_origins
+  user_id
+  address
+  lat
+  long
+
+user_destinations
+  user_id
+  address
+  lat
+  long
+
 trips
   user_id
   station_id
-  current_location
+  origin
   destination
 
 user_trips
@@ -64,13 +76,13 @@ Sample data:
 User path:
 
 User index page/form
-  insert current location
-  insert destination
+  insert origin address
+  insert destination address
   insert trip length in minutes (15,30,45)
 
 Post request to users_controller
-  pass current to geocoder for google
-  pass destination to geocoder for google 
+  pass origin address to geocoder
+  pass destination address to geocoder
 
 Show page
   nearest station to their location
