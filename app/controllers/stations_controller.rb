@@ -4,18 +4,17 @@ class StationsController < ApplicationController
   # GET /stations
   # GET /stations.json
   def index
-    json = open('citibike.json')
-    json = json.read
-    hash = JSON.parse(json)
-    array=hash["stationBeanList"]
-    array.each do |station|
-     instance = Station.new
-     instance.address = station["stationName"]
-     instance.latitude = station["latitude"]
-     instance.longitude = station["longitude"]
-     instance.station_id = station["id"]
-     instance.save
-    end
+    # json = File.read('citi_20130821_2010')
+    # hash = JSON.parse(json)
+    # array=hash["stationBeanList"]
+    # array.each do |station|
+    #  instance = Station.new
+    #  instance.address = station["stationName"]
+    #  instance.latitude = station["latitude"]
+    #  instance.longitude = station["longitude"]
+    #  instance.station_id = station["id"]
+    #  instance.save
+    # end
     @stations = Station.all
   end
 

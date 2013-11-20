@@ -8,7 +8,6 @@ class BikeRackStatus < ActiveRecord::Migration
         t.integer :bikes
         t.integer :free
         t.datetime :station_time
-        t.timestamps
       end
     end
   end
