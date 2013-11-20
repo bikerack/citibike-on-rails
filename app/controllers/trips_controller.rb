@@ -46,15 +46,8 @@ class TripsController < ApplicationController
   # PATCH/PUT /trips/1
   # PATCH/PUT /trips/1.json
   def update
-    respond_to do |format|
-      if @trip.update(trip_params)
-        format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @trip.errors, status: :unprocessable_entity }
-      end
-    end
+    @trip.origin.update(trip_params[:origin])
+    @trip.destination.update(trip_params[:destination])
   end
 
   # DELETE /trips/1
@@ -75,6 +68,6 @@ class TripsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      params.require(:trip).permit(:origin =>[:address], :destination => [:address])
+      params.require(:trip).permit(:origin =>[:address, :station_id], :destination => [:address,:station_id])
     end
 end
