@@ -92,3 +92,32 @@ Show page
 
 google maps for rails
 
+
+
+##### Notes
+
+- Don't pull from the file, put all the information in the database
+- After the initial seeding, don't pull anything from a file. Application should just querry the data base
+def round_off(seconds = 60)
+  Time.at((self.to_f / seconds).round * seconds)
+end
+
+Time.at((test.created_at.to_f / 5.minutes).round * seconds)
+
+class Float
+  def round_to(x)
+    (self * 10**x).round.to_f / 10**x
+  end
+
+  def ceil_to(x)
+    (self * 10**x).ceil.to_f / 10**x
+  end
+
+  def floor_to(x)
+    (self * 10**x).floor.to_f / 10**x
+  end
+end
+
+
+
+

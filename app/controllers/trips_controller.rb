@@ -48,6 +48,20 @@ class TripsController < ApplicationController
   def update
     @trip.origin.update(trip_params[:origin])
     @trip.destination.update(trip_params[:destination])
+
+
+    
+    # def update
+    #   respond_to do |format|
+    #     if @trip.update(trip_params)
+    #       format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
+    #       format.json { head :no_content }
+    #     else
+    #       format.html { render action: 'edit' }
+    #       format.json { render json: @trip.errors, status: :unprocessable_entity }
+    #     end
+    #   end
+    # end
   end
 
   # DELETE /trips/1
