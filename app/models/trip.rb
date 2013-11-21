@@ -12,7 +12,7 @@ class Trip < ActiveRecord::Base
   end
 
   def minus_week
-    self.ride_time - 2.months
+    self.ride_time - 56.days
   end
 
  def origin_history
