@@ -6,11 +6,9 @@
 </p>
 
 <h3>Nearby Stations to Origin</h3>
-<% n=0 %>
-<% Station.near([@trip.origin.latitude, @trip.origin.longitude], 0.25).each do |station| %>
+<% Station.near([@trip.origin.latitude, @trip.origin.longitude], 0.25).each_with_index do |station, n| %>
   <%= link_to station.address, station %> (<%= station.distance.round(2) %> miles)
   (<%= @trip.origin_history[n][0][1] %>)</br>
-    <% n+=1 %>
 <% end %></br></br>
 
 
@@ -21,11 +19,9 @@
 </p>
 
 <h3>Nearby Stations to Destination</h3>
-<% n=0 %>
-<% Station.near([@trip.destination.latitude, @trip.destination.longitude], 0.25).each do |station| %>
+<% Station.near([@trip.destination.latitude, @trip.destination.longitude], 0.25).each_with_index do |station, n| %>
   <%= link_to station.address, station %> (<%= station.distance.round(2) %> miles)
   (<%= @trip.destination_history[n][0][2] %>)</br>
-  <% n+=1 %>
 <% end %></br></br>
 
 
