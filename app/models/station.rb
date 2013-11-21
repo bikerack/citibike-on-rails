@@ -1,5 +1,9 @@
 class Station < ActiveRecord::Base
 
+  geocoded_by :address
+  after_validation :geocode
+
+
   def self.import
     create!([
   { :address => "W 52 St & 11 Ave", :latitude => 40.76727216, :longitude => -73.99392888, :created_at => "2013-11-20 23:49:44", :updated_at => "2013-11-20 23:49:44", :station_id => 72 },
