@@ -31,7 +31,7 @@ class TripsController < ApplicationController
     @destination.save
     @trip = Trip.new(:origin_id => @origin.id, :destination_id => @destination.id)
     @trip.save
-    @trip.start_time
+    @trip.update(:ride_time => @trip.start_time + 30.minutes)
 
     respond_to do |format|
       if @trip.save
