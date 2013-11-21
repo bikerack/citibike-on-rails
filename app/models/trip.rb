@@ -11,13 +11,18 @@ class Trip < ActiveRecord::Base
     Time.at((@time.to_f / seconds).round * seconds)
   end
 
-  def minus_week
+
+  def minus_two_months_origin
+    start_time - 56.days
+  end
+
+  def minus_two_months_destination
     self.ride_time - 56.days
   end
 
  def origin_history
     info=Station.near([self.origin.latitude, self.origin.longitude], 0.25).collect do |station| 
-      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{minus_week.to_s[0..-5].gsub(' ','T').concat('+00:00')}\'"
+      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{minus_two_months_origin.to_s[0..-7].gsub(' ','T').concat('+00:00')}\'"
       # @@db.execute(cmd)
       #raise cmd.inspect
       @@db.execute(cmd)
@@ -28,7 +33,7 @@ class Trip < ActiveRecord::Base
 
   def destination_history
     info=Station.near([self.destination.latitude, self.destination.longitude], 0.25).collect do |station| 
-      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{minus_week.to_s[0..-5].gsub(' ','T').concat('+00:00')}\'"
+      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{minus_two_months_destination.to_s[0..-5].gsub(' ','T').concat('+00:00')}\'"
       # @@db.execute(cmd)
       #raise cmd.inspect
       @@db.execute(cmd)
