@@ -3,13 +3,13 @@ class BikeRackStatus < ActiveRecord::Migration
   
   def up
     Station.import
-    Station.all.each do |station|
-      create_table "station_#{station.station_id}" do |t|
-        t.integer :bikes
-        t.integer :free
-        t.datetime :station_time
+      Station.all.each do |station|
+        create_table "station_#{station.station_id}" do |t|
+          t.integer :bikes
+          t.integer :free
+          t.datetime :station_time
+        end
       end
-    end
   end
 end
 

@@ -306,7 +306,6 @@ class Station < ActiveRecord::Base
   { :address => "E 33 St & 1 Ave", :latitude => 40.74315566, :longitude => -73.97434726, :created_at => "2013-11-20 23:49:45", :updated_at => "2013-11-20 23:49:45", :station_id => 527 },
   { :address => "2 Ave & E 30 St", :latitude => 40.74290902, :longitude => -73.97706058, :created_at => "2013-11-20 23:49:45", :updated_at => "2013-11-20 23:49:45", :station_id => 528 },
   { :address => "W 42 St & 8 Ave", :latitude => 40.7575699, :longitude => -73.99098507, :created_at => "2013-11-20 23:49:45", :updated_at => "2013-11-20 23:49:45", :station_id => 529 },
-  { :address => "11 Ave & W 59 St", :latitude => 40.771522, :longitude => -73.990541, :created_at => "2013-11-20 23:49:45", :updated_at => "2013-11-20 23:49:45", :station_id => 530 },
   { :address => "Forsyth St & Broome St", :latitude => 40.71893904, :longitude => -73.99266288, :created_at => "2013-11-20 23:49:45", :updated_at => "2013-11-20 23:49:45", :station_id => 531 },
   { :address => "S 5 Pl & S 4 St", :latitude => 40.710451, :longitude => -73.960876, :created_at => "2013-11-20 23:49:45", :updated_at => "2013-11-20 23:49:45", :station_id => 532 },
   { :address => "Broadway & W 39 St", :latitude => 40.75299641, :longitude => -73.98721619, :created_at => "2013-11-20 23:49:45", :updated_at => "2013-11-20 23:49:45", :station_id => 533 },

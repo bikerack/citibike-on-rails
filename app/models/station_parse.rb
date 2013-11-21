@@ -16,9 +16,11 @@ class StationParse
     # cmd1 = "select max(id) from station_#{number}"
     # id = @@db.execute(cmd1)
     # id = id.join.to_i+1
-
+    begin
     cmd = "INSERT INTO station_#{number} (bikes, free, station_time) VALUES (?,?,?)"
     @@db.execute(cmd,bikes,free,station_time)
+    rescue
+    end 
   end
 
   def files
@@ -27,6 +29,7 @@ class StationParse
 
   def call
     files.each do |file_name| 
+      begin
       json = File.read("/Users/johnrichardson/Development/data/feed/"+file_name)[0..-2]
       hash = JSON.parse(json)
       array = hash["stationBeanList"]
@@ -38,6 +41,8 @@ class StationParse
         # statusValue = station["statusValue"]
         number = station["id"]
         build_row(number, bikes, free, station_time)
+      end
+      rescue
       end
     end
   end
