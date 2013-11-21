@@ -31,6 +31,7 @@ class TripsController < ApplicationController
     @destination.save
     @trip = Trip.new(:origin_id => @origin.id, :destination_id => @destination.id)
     @trip.save
+    @trip.start_time
 
     respond_to do |format|
       if @trip.save
