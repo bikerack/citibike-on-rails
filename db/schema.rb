@@ -1421,6 +1421,12 @@ ActiveRecord::Schema.define(version: 20131120161330) do
     t.datetime "station_time"
   end
 
+  create_table "station_441", force: true do |t|
+    t.integer  "bikes"
+    t.integer  "free"
+    t.datetime "station_time"
+  end
+
   create_table "station_442", force: true do |t|
     t.integer  "bikes"
     t.integer  "free"

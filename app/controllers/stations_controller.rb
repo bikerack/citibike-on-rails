@@ -4,7 +4,7 @@ class StationsController < ApplicationController
   # GET /stations
   # GET /stations.json
   def index
-    # json = File.read('citi_20130821_2010')
+    # json = File.read('download.json')
     # hash = JSON.parse(json)
     # array=hash["stationBeanList"]
     # array.each do |station|
