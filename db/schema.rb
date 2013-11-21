@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131120161330) do
+ActiveRecord::Schema.define(version: 20131121190431) do
 
   create_table "date_lookups", force: true do |t|
     t.datetime "history"
