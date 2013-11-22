@@ -8,7 +8,7 @@
 <h3>Nearby Stations to Origin</h3>
 <% Station.near([@trip.origin.latitude, @trip.origin.longitude], 0.25).each_with_index do |station, n| %>
   <%= link_to station.address, station %> (<%= station.distance.round(2) %> miles)
-  (<%= @trip.origin_history[n][0][1] %>)</br>
+  (<%= @trip.origin_bike_status[n] %> bikes available now)</br>
 <% end %></br></br>
 
 
@@ -27,30 +27,26 @@
 
 <%= link_to 'Edit', edit_trip_path(@trip) %> |
 <%= link_to 'Back', trips_path %>
-<!-- 
-<table>
+
+<table border="1">
   <thead>
     <tr>
       <th>Station Address</th>
-      <th>Distance</th>
-      <th>Estimated Available Bikes in 15 minutes</th>
-      <th>Estimated Available Bikes in 30 minutes</th>
-      <th>Estimated Available Bikes in 45 minutes</th>
+      <th>Distance in Miles</th>
+      <th>Avail Bikes Now</th>
+      <th>Avail Bikes in 15 min</th>
+      <th>Avail Bikes in 30 min</th>
     </tr>
   </thead>
-
   <tbody>
-    <#% @trips.each do |trip| %>
-    <#% n=0 %>
-    <#% Station.near([@trip.destination.latitude, @trip.destination.longitude], 0.25).each do |station| %>
-      <tr>
-        <td><#%= link_to station.address, station %></td>
-        <td><#%= trip.destination.address %></td>
-        <td><#%= link_to 'Show', trip %></td>
-        <td><#%= link_to 'Edit', edit_trip_path(trip) %></td>
-        <td><#%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% Station.near([@trip.origin.latitude, @trip.origin.longitude], 0.25).each_with_index do |station, n| %>
+      <tr>      
+          <td><%= link_to station.address, station %> </td>
+          <td><%= station.distance.round(2) %></td>
+          <td><%= @trip.origin_bike_status[n] %></td>
+          <td><%= @trip.origin_history[n][0][1] %> </td>
+          <td> -- </td>
       </tr>
-    <#% end %>
+  <% end %>
   </tbody>
-
-</table> -->
+</table>

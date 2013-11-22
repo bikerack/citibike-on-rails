@@ -11,9 +11,25 @@ class Trip < ActiveRecord::Base
     Time.at((@time.to_f / seconds).round * seconds)
   end
 
+  def origin_bike_status
+    uri = URI.parse('http://citibikenyc.com/stations/json')
+    json = uri.read
+    hash = JSON.parse(json)
+    array = hash["stationBeanList"]
+    bikes =[]
+   
+    Station.near([self.origin.latitude, self.origin.longitude], 0.25).collect do |station|
+      array.each do |live_station|
+        if live_station["id"] == station.station_id #) & (live_station["availableBikes"]!=nil)
+          bikes << live_station["availableBikes"]
+        end
+      end 
+    end
+    bikes
+  end
 
   def minus_two_months_origin
-    start_time - 56.days
+    start_time - 56.days+15.minutes
   end
 
   def minus_two_months_destination
@@ -24,7 +40,7 @@ class Trip < ActiveRecord::Base
     info=Station.near([self.origin.latitude, self.origin.longitude], 0.25).collect do |station| 
       cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{minus_two_months_origin.to_s[0..-7].gsub(' ','T').concat('+00:00')}\'"
       # @@db.execute(cmd)
-      #raise cmd.inspect
+      raise cmd.inspect
       @@db.execute(cmd)
     end
     return info
