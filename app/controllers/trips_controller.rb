@@ -30,9 +30,7 @@ class TripsController < ApplicationController
     @destination = Destination.new(:address => trip_params[:destination][:address].concat(" New York City"))
     @destination.save
     @trip = Trip.new(:origin_id => @origin.id, :destination_id => @destination.id)
-    @trip.save
-    @trip.update(:ride_time => @trip.start_time + 30.minutes)
-   
+    @trip.save   
 
     respond_to do |format|
       if @trip.save

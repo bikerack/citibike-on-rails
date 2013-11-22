@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131121192426) do
+ActiveRecord::Schema.define(version: 20131122144149) do
 
   create_table "date_lookups", force: true do |t|
     t.datetime "history"
@@ -2041,7 +2041,6 @@ ActiveRecord::Schema.define(version: 20131121192426) do
     t.integer  "destination_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "ride_time"
   end
 
   add_index "trips", ["destination_id"], name: "index_trips_on_destination_id"
