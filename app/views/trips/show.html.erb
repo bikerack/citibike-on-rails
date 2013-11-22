@@ -63,7 +63,7 @@
     </tr>
   </thead>
   <tbody>
-    <% Station.near([@trip.destination.latitude, @trip.destination.longitude], 100).limit(5).each_with_index do |station, n| %>
+    <% Station.near([@trip.destination.latitude, @trip.destination.longitude], 0.25).limit(5).each_with_index do |station, n| %>
       <tr>      
           <td><%= link_to station.address, station %> </td>
           <td><%= station.distance.round(2) %></td>
