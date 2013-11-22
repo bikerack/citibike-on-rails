@@ -1,8 +1,7 @@
 class Station < ActiveRecord::Base
 
-  geocoded_by :address
-  after_validation :geocode
-
+  geocoded_by [:latitude, :longitude]
+  #after_validation :geocode
 
   def self.import
     create!([

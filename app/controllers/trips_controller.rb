@@ -25,7 +25,10 @@ class TripsController < ApplicationController
   # POST /trips
   # POST /trips.json
   def create
-    @origin = Origin.new(:address => trip_params[:origin][:address].concat(" New York City"))
+    @origin = Origin.new(
+      :latitude => trip_params[:origin][:latitude],
+      :longitude => trip_params[:origin][:longitude]
+      )
     @origin.save
     @destination = Destination.new(:address => trip_params[:destination][:address].concat(" New York City"))
     @destination.save
@@ -75,6 +78,6 @@ class TripsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      params.require(:trip).permit(:origin =>[:address], :destination => [:address])
+      params.require(:trip).permit(:origin =>[:address, :latitude, :longitude], :destination => [:address])
     end
 end

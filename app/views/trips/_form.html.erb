@@ -12,12 +12,36 @@
   <% end %>
 
 
+<!--   <div class="field">
+    <#%= f.label :origin %><br>
+    <#%= f.fields_for :origin, Origin.new do |origin_form| %>
+      <#%= origin_form.text_field :address %>
+    <#% end %>
+  </div>
+ -->
+
+  <!-- <p id="error"></p>
+<form action="/trips/show" method="post">
+    <input id="latitude" name="latitude" type="hidden">
+    <input id="longitude" name="longitude" type="hidden">
+    <input id="destination" name="destination" type="text">
+    <input type="submit" id="submit" value="submit">
+</form>
+ -->
+<!--  -->
+
   <div class="field">
-    <%= f.label :origin %><br>
     <%= f.fields_for :origin, Origin.new do |origin_form| %>
-      <%= origin_form.text_field :address %>
+      <%= origin_form.hidden_field :latitude %>
     <% end %>
   </div>
+
+  <div class="field">
+    <%= f.fields_for :origin, Origin.new do |origin_form| %>
+      <%= origin_form.hidden_field :longitude %>
+    <% end %>
+  </div>
+
 
   <div class="field">
     <%= f.label :destination %><br>
