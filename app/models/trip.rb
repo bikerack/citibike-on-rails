@@ -2,7 +2,7 @@ class Trip < ActiveRecord::Base
   belongs_to :origin
   belongs_to :destination
 
-  @@db = SQLite3::Database.new('/Users/johnrichardson/Development/code/flatiron/ruby/citibike-on-rails/db/development.sqlite3')
+  @@db = ActiveRecord::Base.connection
 
 
 
@@ -68,6 +68,15 @@ class Trip < ActiveRecord::Base
   end 
 
 end
+
+# Advanced SQL functions
+# BETWEEN
+
+# SELECT * FROM stations_table_array 
+
+# station_411, station_422
+
+
 
 
 
