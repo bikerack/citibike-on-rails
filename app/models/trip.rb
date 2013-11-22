@@ -4,7 +4,13 @@ class Trip < ActiveRecord::Base
 
   @@db = SQLite3::Database.new('/Users/vivianzhang/Desktop/flatironschool/citi/citibike-on-rails/db/development.sqlite3')
 
+# -- work day/ weekend selector
+# -- query last 5 work days
+# -- query last 10 work days
+# -- query the same day of the week for the past 5 weeks
 
+# specify a range of date
+# SELECT * FROM station_72 WHERE date(station_time) between '2013-08-30' and '2013-09-10' 
 
   def start_time(seconds = 5.minutes)
     @time = self.origin.created_at
@@ -46,12 +52,26 @@ class Trip < ActiveRecord::Base
   end
 
   def rollback(roll_days, roll_minutes)
-       start_time - roll_days.days + roll_minutes.minutes
+       start_time - roll_days.days + roll_minutes.minutes 
   end
 
- def origin_history
+  def rollback_biz(roll_days, roll_minutes, d)
+       d.business_days.before(start_time) - roll_days.days + roll_minutes.minutes - 1.hours
+  end
+
+  def origin_history
     Station.near([self.origin.latitude, self.origin.longitude], 0.25).collect do |station| 
       cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{rollback(56, 15).to_s[0..-7].gsub(' ','T').concat('+00:00')}\'"
+      # @@db.execute(cmd)
+      # raise cmd.inspect
+      @@db.execute(cmd)
+    end
+  end
+
+
+ def origin_history_bizlookback
+    Station.near([self.origin.latitude, self.origin.longitude], 0.25).collect do |station| 
+      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{rollback_biz(56, 15,1).to_s[0..-7].gsub(' ','T').concat('+00:00')}\'"
       # @@db.execute(cmd)
       # raise cmd.inspect
       @@db.execute(cmd)

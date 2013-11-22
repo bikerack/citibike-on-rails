@@ -34,6 +34,7 @@ class TripsController < ApplicationController
     @destination.save
     @trip = Trip.new(:origin_id => @origin.id, :destination_id => @destination.id)
     @trip.save   
+    raise @trip.inspect
 
     respond_to do |format|
       if @trip.save

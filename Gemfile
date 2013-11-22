@@ -7,6 +7,9 @@ gem 'rails', '4.0.1'
 # gem 'pg'
 gem 'sqlite3'
 
+# use business and holidy calendar
+gem 'business_time'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -27,7 +30,6 @@ gem 'jquery-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
-
 
 gem 'geocoder'
 require 'open-uri'

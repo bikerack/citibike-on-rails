@@ -33,6 +33,9 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.1.4)
+    business_time (0.6.2)
+      activesupport (>= 3.1.0)
+      tzinfo (~> 0.3.31)
     capybara (2.1.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -198,6 +201,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
+  business_time
   capybara
   coffee-rails (~> 4.0.0)
   database_cleaner
