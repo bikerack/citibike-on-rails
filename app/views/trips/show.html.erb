@@ -5,29 +5,6 @@
   <%= @trip.origin.address %>
 </p>
 
-<h3>Nearby Stations to Origin</h3>
-<% Station.near([@trip.origin.latitude, @trip.origin.longitude], 0.25).each_with_index do |station, n| %>
-  <%= link_to station.address, station %> (<%= station.distance.round(2) %> miles)
-  (<%= @trip.origin_bike_status[n] %> bikes available now)</br>
-<% end %></br></br>
-
-
-
-<p>
-  <strong>Destination:</strong>
-  <%= @trip.destination.address %>
-</p>
-
-<h3>Nearby Stations to Destination</h3>
-<% Station.near([@trip.destination.latitude, @trip.destination.longitude], 0.25).each_with_index do |station, n| %>
-  <%= link_to station.address, station %> (<%= station.distance.round(2) %> miles)
-  (<%= @trip.destination_history[n][0][2] %>)</br>
-<% end %></br></br>
-
-
-<%= link_to 'Edit', edit_trip_path(@trip) %> |
-<%= link_to 'Back', trips_path %>
-
 <table border="1">
   <thead>
     <tr>
@@ -50,3 +27,53 @@
   <% end %>
   </tbody>
 </table>
+
+<!-- <h3>Nearby Stations to Origin</h3>
+<% Station.near([@trip.origin.latitude, @trip.origin.longitude], 0.25).each_with_index do |station, n| %>
+  <%= link_to station.address, station %> (<%= station.distance.round(2) %> miles)
+  (<%= @trip.origin_bike_status[n] %> bikes available now)</br>
+<% end %></br></br>
+
+ -->
+<!-- 
+<p>
+  <strong>Destination:</strong>
+  <%#= @trip.destination.address %>
+</p>
+
+<h3>Nearby Stations to Destination</h3>
+<%# Station.near([@trip.destination.latitude, @trip.destination.longitude], 0.25).each_with_index do |station, n| %>
+  <%#= link_to station.address, station %> (<%#= station.distance.round(2) %> miles)
+  (<%#= @trip.destination_history[n][0][2] %>)</br>
+<%# end %></br></br> -->
+
+<p>
+  <strong>Destination:</strong>
+  <%= @trip.destination.address %>
+</p>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Station Address</th>
+      <th>Distance in Miles</th>
+      <th>Avail Racks Now</th>
+      <th>Avail Racks in 15 min</th>
+      <th>Avail Racks in 30 min</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Station.near([@trip.destination.latitude, @trip.destination.longitude], 0.25).each_with_index do |station, n| %>
+      <tr>      
+          <td><%= link_to station.address, station %> </td>
+          <td><%= station.distance.round(2) %></td>
+          <td><%= @trip.destination_rack_status[n] %></td>
+          <td></td>
+          <td><%= @trip.destination_history[n][0][2] %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_trip_path(@trip) %> |
+<%= link_to 'Back', trips_path %>
