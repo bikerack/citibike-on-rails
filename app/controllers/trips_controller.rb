@@ -10,11 +10,21 @@ class TripsController < ApplicationController
   # GET /trips/1
   # GET /trips/1.json
   def show
-    @station = Station.all
-    @hash = Gmaps4rails.build_markers(@trip) do |trip, marker|
-      marker.lat trip.origin.latitude
-      marker.lng trip.origin.longitude
+    @origin_stations = Station.near([@trip.origin.latitude, @trip.origin.longitude], 0.25)
+    @origin_stations_hash = Gmaps4rails.build_markers(@origin_stations) do |station, marker|
+      marker.lat station.latitude
+      marker.lng station.longitude
+      marker.infowindow station.address
     end
+
+    @destination_stations = Station.near([@trip.destination.latitude, @trip.destination.longitude], 0.25)
+    @destination_stations_hash = Gmaps4rails.build_markers(@destination_stations) do |station, marker|
+      marker.lat station.latitude
+      marker.lng station.longitude
+    end
+
+    # Station.near([@trip.origin.latitude, @trip.origin.longitude], 0.25).each_with_index do |station, n|
+    # #raise @hash.inspect [{:lat=>40.6872726, :lng=>-73.9873609}]
   end
 
   # GET /trips/new
