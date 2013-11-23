@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20131122144149) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "date_lookups", force: true do |t|
     t.datetime "history"
     t.datetime "created_at"
@@ -28,7 +31,7 @@ ActiveRecord::Schema.define(version: 20131122144149) do
     t.datetime "updated_at"
   end
 
-  add_index "destinations", ["station_id"], name: "index_destinations_on_station_id"
+  add_index "destinations", ["station_id"], name: "index_destinations_on_station_id", using: :btree
 
   create_table "origins", force: true do |t|
     t.string   "address"
@@ -39,7 +42,7 @@ ActiveRecord::Schema.define(version: 20131122144149) do
     t.datetime "updated_at"
   end
 
-  add_index "origins", ["station_id"], name: "index_origins_on_station_id"
+  add_index "origins", ["station_id"], name: "index_origins_on_station_id", using: :btree
 
   create_table "station_116", force: true do |t|
     t.integer  "bikes"
@@ -2043,7 +2046,7 @@ ActiveRecord::Schema.define(version: 20131122144149) do
     t.datetime "updated_at"
   end
 
-  add_index "trips", ["destination_id"], name: "index_trips_on_destination_id"
-  add_index "trips", ["origin_id"], name: "index_trips_on_origin_id"
+  add_index "trips", ["destination_id"], name: "index_trips_on_destination_id", using: :btree
+  add_index "trips", ["origin_id"], name: "index_trips_on_origin_id", using: :btree
 
 end
