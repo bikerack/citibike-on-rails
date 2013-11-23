@@ -65,6 +65,7 @@ GEM
     ffi (1.9.3)
     formatador (0.2.4)
     geocoder (1.1.8)
+    gmaps4rails (2.1.0)
     guard (2.2.4)
       formatador (>= 0.2.4)
       listen (~> 2.1)
@@ -203,6 +204,7 @@ DEPENDENCIES
   database_cleaner
   factory_girl_rails
   geocoder
+  gmaps4rails
   guard (>= 2.1.0)
   guard-rspec
   jbuilder (~> 1.2)

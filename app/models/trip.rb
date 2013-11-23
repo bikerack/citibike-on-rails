@@ -2,7 +2,7 @@ class Trip < ActiveRecord::Base
   belongs_to :origin
   belongs_to :destination
 
-  @@db = SQLite3::Database.new('/Users/vivianzhang/Desktop/flatironschool/citi/citibike-on-rails/db/development.sqlite3')
+  @@db = SQLite3::Database.new('//Users/johnrichardson/Development/code/flatiron/ruby/citibike-on-rails/db/development.sqlite3')
 
 
 

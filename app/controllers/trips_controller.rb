@@ -11,6 +11,10 @@ class TripsController < ApplicationController
   # GET /trips/1.json
   def show
     @station = Station.all
+    @hash = Gmaps4rails.build_markers(@trip) do |trip, marker|
+      marker.lat trip.origin.latitude
+      marker.lng trip.origin.longitude
+    end
   end
 
   # GET /trips/new
