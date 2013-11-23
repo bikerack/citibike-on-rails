@@ -33,6 +33,7 @@ gem 'geocoder'
 require 'open-uri'
 gem 'json'
 gem 'seed_dump'
+gem 'chronic'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

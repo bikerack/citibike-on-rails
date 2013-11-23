@@ -1,11 +1,9 @@
 class Trip < ActiveRecord::Base
   belongs_to :origin
   belongs_to :destination
-
-  @@db = SQLite3::Database.new('/Users/vivianzhang/Desktop/flatironschool/citi/citibike-on-rails/db/development.sqlite3')
-
-
-
+  
+  @@db = ActiveRecord::Base.connection
+  
   def start_time(seconds = 5.minutes)
     @time = self.origin.created_at
     Time.at((@time.to_f / seconds).round * seconds)
