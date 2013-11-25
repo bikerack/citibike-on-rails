@@ -67,6 +67,20 @@
   <%= @trip.destination.address %>
 </p>
 
+<div style='width: 800px;'>
+  <div id="map2" style='width: 800px; height: 400px;'></div>
+</div>
+<script type="text/javascript">
+  handler2 = Gmaps.build('Google');
+  handler2.buildMap({ provider: {}, internal: {id: 'map2'}}, function(){
+    markers = handler2.addMarkers(<%=raw @destination_stations_hash.to_json %>);
+    handler2.bounds.extendWith(markers);
+    handler2.fitMapToBounds();
+  });
+</script>
+
+
+
 <table border="1">
   <thead>
     <tr>

@@ -21,6 +21,7 @@ class TripsController < ApplicationController
     @destination_stations_hash = Gmaps4rails.build_markers(@destination_stations) do |station, marker|
       marker.lat station.latitude
       marker.lng station.longitude
+      marker.infowindow station.address
     end
 
     # Station.near([@trip.origin.latitude, @trip.origin.longitude], 0.25).each_with_index do |station, n|

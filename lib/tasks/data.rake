@@ -4,6 +4,13 @@ namespace :data do
     StationParse.parse
   end
 
+  desc "Add current station data to database"
+  task :json => :environment do
+    # StationParse.parse
+  end
+
+
+
   # desc "Pick a random product as the prize"
   # task :prize => :environment do
   #   puts "Prize: #{pick(Product).name}"
