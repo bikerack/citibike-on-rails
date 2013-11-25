@@ -17,6 +17,7 @@ set :branch, 'deploy-to-linode2'
 
 # if you want to clean up old releases on each deploy uncomment this:
 before "deploy:restart", "deploy:symlink_database_yml"
+before "deploy:restart", "deploy:symlink_sqlite_database"
 after "deploy:restart", "deploy:cleanup"
 
 # if you're still using the script/reaper helper you will need
@@ -30,6 +31,9 @@ namespace :deploy do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
   task :symlink_database_yml, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} ln -s /home/#{ user }/#{ application }/shared/db/database.yml #{File.join(current_path,'config')}"
+    run "#{try_sudo} ln -s /home/#{ user }/#{ application }/shared/config/database.yml #{File.join(current_path,'config')}"
+  end
+  task :symlink_sqlite_database, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} ln -s /home/#{ user }/#{ application }/shared/db/production.sqlite3 #{File.join(current_path,'db')}"
   end
 end

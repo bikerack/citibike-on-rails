@@ -2,9 +2,10 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
+gem 'sqlite3'
 
 # Use sqlite3 as the database for Active Record
-gem 'pg', group: :production
+# gem 'pg', group: :production
 
 
 # Use SCSS for stylesheets
@@ -55,7 +56,6 @@ gem 'capistrano',  '2.15.5', group: :development
 # gem 'debugger', group: [:development, :test]
 
 group :test, :development do
-  gem 'sqlite3'
   gem "rspec-rails"
   gem "capybara"
   gem "selenium-webdriver"
