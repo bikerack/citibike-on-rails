@@ -18,7 +18,7 @@ class StationParse
     # id = @@db.execute(cmd1)
     # id = id.join.to_i+1
     begin
-    cmd = "INSERT INTO station_#{number} (bikes, free, station_time) VALUES (#{bikes},#{free},#{station_time}"
+    cmd = "INSERT INTO station_#{number} (bikes, free, station_time) VALUES (#{bikes},#{free},TIMESTAMP \'#{station_time}\')"
     ActiveRecord::Base.connection.execute(cmd)
     rescue
     end 
@@ -38,8 +38,8 @@ class StationParse
         # raise station.inspect
         bikes =  station["availableBikes"]
         free = station["availableDocks"] 
-        station_time = parse_filename(file_name)
-
+        # binding.pry
+        station_time = parse_filename(file_name)[0..18]
         # binding.pry
         # statusValue = station["statusValue"]
         number = station["id"]
@@ -52,7 +52,7 @@ class StationParse
 
   def parse_filename(file_name)
     # binding.pry
-    Time.parse(file_name.to_s.gsub("citi_", "").gsub("_",""))
+    Time.parse(file_name.gsub("citi_", "").gsub("_","")).to_s
 
   #   file_name.gsub("citi_", "").gsub("_","")
   #
