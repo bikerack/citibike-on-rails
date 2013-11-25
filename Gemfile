@@ -4,8 +4,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.1'
 
 # Use sqlite3 as the database for Active Record
-# gem 'pg'
-gem 'sqlite3'
+gem 'pg', group: :production
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -55,6 +55,7 @@ gem 'capistrano',  '2.15.5', group: :development
 # gem 'debugger', group: [:development, :test]
 
 group :test, :development do
+  gem 'sqlite3'
   gem "rspec-rails"
   gem "capybara"
   gem "selenium-webdriver"

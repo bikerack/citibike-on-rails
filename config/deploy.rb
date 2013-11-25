@@ -16,7 +16,8 @@ set :ssh_options, { :forward_agent => true }
 set :branch, 'deploy-to-linode2'
 
 # if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
+before "deploy:restart", "deploy:symlink_database_yml"
+after "deploy:restart", "deploy:cleanup"
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
@@ -27,5 +28,8 @@ namespace :deploy do
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+  end
+  task :symlink_database_yml, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} ln -s /home/#{ user }/#{ application }/shared/db/database.yml #{File.join(current_path,'config')}"
   end
 end
