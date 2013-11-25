@@ -2,7 +2,7 @@ class Origin < ActiveRecord::Base
   belongs_to :station
   has_many :trips
 
-  # geocoded_by :address
-  # after_validation :geocode
-  
+  reverse_geocoded_by :latitude, :longitude
+  after_validation :reverse_geocode
+
 end
