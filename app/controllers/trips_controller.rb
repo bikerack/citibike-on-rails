@@ -14,14 +14,23 @@ class TripsController < ApplicationController
     @origin_stations_hash = Gmaps4rails.build_markers(@trip.origin_stations) do |station, marker|
       marker.lat station.latitude
       marker.lng station.longitude
-      marker.infowindow "<b>#{station.address}</b></br> Bikes now: #{@trip.origin_bike_status[i]}</br> Bikes in 30 minuts: #{@trip.origin_history[i][0][2]}"
+      marker.infowindow "<b>#{station.address} (#{station.distance.round(2)} mi)</b></br> 
+        Available bikes...</br>
+        now: #{@trip.origin_bike_status[i]}</br> 
+        in 15 minuts: #{@trip.origin_history[i][0][2]}</br> 
+        in 30 minutes:"
+
       i+=1
     end
     n=0
     @destination_stations_hash = Gmaps4rails.build_markers(@trip.destination_stations) do |station, marker|
       marker.lat station.latitude
       marker.lng station.longitude
-      marker.infowindow "<b>#{station.address}</b></br> Racks now: #{@trip.destination_rack_status[n]}</br> Racks in 30 minuts: #{@trip.destination_history[n][0][2]}"
+      marker.infowindow "<b>#{station.address} (#{station.distance.round(2)} mi)</b></br> 
+        Available racks...</br>
+        now: #{@trip.destination_rack_status[n]}</br> 
+        in 15 minutes: </br>
+        in 30 minuts: #{@trip.destination_history[n][0][2]}"
       n+=1
     end
 
