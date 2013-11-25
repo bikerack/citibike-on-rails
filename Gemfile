@@ -35,6 +35,7 @@ gem 'json'
 gem 'seed_dump'
 gem 'gmaps4rails'
 gem 'whenever', :require => false
+gem 'anjlab-bootstrap-rails', '~> 3.0.2.0', :require => 'bootstrap-rails'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
