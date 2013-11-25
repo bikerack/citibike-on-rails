@@ -73,8 +73,8 @@
 <script type="text/javascript">
   handler2 = Gmaps.build('Google');
   handler2.buildMap({ provider: {}, internal: {id: 'map2'}}, function(){
-    markers = handler2.addMarkers(<%=raw @destination_stations_hash.to_json %>);
-    handler2.bounds.extendWith(markers);
+    markers2 = handler2.addMarkers(<%=raw @destination_stations_hash.to_json %>);
+    handler2.bounds.extendWith(markers2);
     handler2.fitMapToBounds();
   });
 </script>
