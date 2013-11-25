@@ -17,9 +17,8 @@ class TripsController < ApplicationController
       marker.infowindow "<b>#{station.address} (#{station.distance.round(2)} mi)</b></br> 
         Available bikes...</br>
         now: #{@trip.origin_bike_status[i]}</br> 
-        in 15 minuts: #{@trip.origin_history[i][0][2]}</br> 
+        in 15 minuts: #{@trip.origin_history[i][0][1]}</br> 
         in 30 minutes:"
-
       i+=1
     end
     n=0
