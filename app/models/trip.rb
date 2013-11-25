@@ -58,18 +58,18 @@ class Trip < ActiveRecord::Base
        start_time - roll_days.days + roll_minutes.minutes
   end
 
-  def origin_history
+  def origin_history(num)
     origin_stations.collect do |station| 
-      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{rollback(56, 15).to_s[0..-7].gsub(' ','T').concat('+00:00')}\'"
+      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{rollback(56, num).to_s[0..-7].gsub(' ','T').concat('+00:00')}\'"
       # @@db.execute(cmd)
       # raise cmd.inspect
       @@db.execute(cmd)
     end
   end
 
-  def destination_history
+  def destination_history(num)
     destination_stations.collect do |station| 
-      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{rollback(56,30).to_s[0..-7].gsub(' ','T').concat('+00:00')}\'"
+      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{rollback(56,num).to_s[0..-7].gsub(' ','T').concat('+00:00')}\'"
       # @@db.execute(cmd)
       #raise cmd.inspect
       @@db.execute(cmd)
