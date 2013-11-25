@@ -10,18 +10,19 @@ class TripsController < ApplicationController
   # GET /trips/1
   # GET /trips/1.json
   def show
-    @origin_stations = Station.near([@trip.origin.latitude, @trip.origin.longitude], 0.25)
-    @origin_stations_hash = Gmaps4rails.build_markers(@origin_stations) do |station, marker|
+    i=0
+    @origin_stations_hash = Gmaps4rails.build_markers(@trip.origin_stations) do |station, marker|
       marker.lat station.latitude
       marker.lng station.longitude
-      marker.infowindow station.address
+      marker.infowindow "<b>#{station.address}</b></br> Bikes now: #{@trip.origin_bike_status[i]}</br> Bikes in 30 minuts: #{@trip.origin_history[i][0][2]}"
+      i+=1
     end
-
-    @destination_stations = Station.near([@trip.destination.latitude, @trip.destination.longitude], 0.25)
-    @destination_stations_hash = Gmaps4rails.build_markers(@destination_stations) do |station, marker|
+    n=0
+    @destination_stations_hash = Gmaps4rails.build_markers(@trip.destination_stations) do |station, marker|
       marker.lat station.latitude
       marker.lng station.longitude
-      marker.infowindow station.address
+      marker.infowindow "<b>#{station.address}</b></br> Racks now: #{@trip.destination_rack_status[n]}</br> Racks in 30 minuts: #{@trip.destination_history[n][0][2]}"
+      n+=1
     end
 
     # Station.near([@trip.origin.latitude, @trip.origin.longitude], 0.25).each_with_index do |station, n|
