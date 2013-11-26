@@ -49,7 +49,7 @@ class Trip < ActiveRecord::Base
 
  def origin_history
     Station.near([self.origin.latitude, self.origin.longitude], 0.25).collect do |station| 
-      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{rollback(56, 15).to_s[0..-7].gsub(' ','T').concat('+00:00')}\'"
+      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{rollback(56, 15).to_s[0..18]}\'"
       # @@db.execute(cmd)
       # raise cmd.inspect
       @@db.execute(cmd)
