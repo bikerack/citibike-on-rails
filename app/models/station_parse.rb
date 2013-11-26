@@ -2,7 +2,7 @@ class StationParse
   attr_writer :files
   attr_reader :path
 
-  @@db = SQLite3::Database.new('/Users/johnrichardson/Development/code/flatiron/ruby/citibike-on-rails/db/development.sqlite3')
+  # @@db = SQLite3::Database.new('/Users/johnrichardson/Development/code/flatiron/ruby/citibike-on-rails/db/development.sqlite3')
 
   def self.parse
     new.call
@@ -18,7 +18,7 @@ class StationParse
     # id = id.join.to_i+1
     begin
     cmd = "INSERT INTO station_#{number} (bikes, free, station_time) VALUES (?,?,?)"
-    @@db.execute(cmd,bikes,free,station_time)
+    # @@db.execute(cmd,bikes,free,station_time)
     rescue
     end 
   end
