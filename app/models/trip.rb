@@ -2,10 +2,6 @@ class Trip < ActiveRecord::Base
   belongs_to :origin
   belongs_to :destination
 
-  #@@db = SQLite3::Database.new('/Users/johnrichardson/Development/code/flatiron/ruby/citibike-on-rails/db/development.sqlite3')
-  @@db = SQLite3::Database.new('/Users/vivianzhang/Desktop/flatironschool/citi/citibike-on-rails/db/development.sqlite3')
-
-
   def start_time(seconds = 5.minutes)
     @time = self.origin.created_at
     Time.at((@time.to_f / seconds).round * seconds)
@@ -60,19 +56,15 @@ class Trip < ActiveRecord::Base
 
   def origin_history(min)
     origin_stations.collect do |station| 
-      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{rollback(56, min).to_s[0..-7].gsub(' ','T').concat('+00:00')}\'"
-      # @@db.execute(cmd)
-      # raise cmd.inspect
-      @@db.execute(cmd)
+      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{rollback(56, min).to_s[0..18]}\'"
+      connection.execute(cmd).field_values("bikes").join
     end
   end
 
   def destination_history(min)
     destination_stations.collect do |station| 
-      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{rollback(56,min).to_s[0..-7].gsub(' ','T').concat('+00:00')}\'"
-      # @@db.execute(cmd)
-      #raise cmd.inspect
-      @@db.execute(cmd)
+      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{rollback(56,min).to_s[0..18]}\'"
+      connection.execute(cmd).field_values("free").join
     end
   end 
 
