@@ -13,7 +13,7 @@ role :app, "66.228.33.47"                          # This may be the same as you
 role :db,  "66.228.33.47", :primary => true # This is where Rails migrations will run
 
 set :ssh_options, { :forward_agent => true }
-set :branch, 'deploy-to-linode2'
+set :branch, 'master'
 
 # if you want to clean up old releases on each deploy uncomment this:
 before "deploy:restart", "deploy:symlink_database_yml"
