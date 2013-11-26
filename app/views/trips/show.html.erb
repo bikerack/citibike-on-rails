@@ -21,7 +21,7 @@
           <td><%= link_to station.address, station %> </td>
           <td><%= station.distance.round(2) %></td>
           <td><%= @trip.origin_bike_status[n] %></td>
-          <td><%= @trip.origin_history[n][0][1] %> </td>
+          <td><%= @trip.origin_history[n] %> </td>
           <td> -- </td>
       </tr>
   <% end %>
@@ -69,7 +69,7 @@
           <td><%= station.distance.round(2) %></td>
           <td><%= @trip.destination_rack_status[n] %></td>
           <td></td>
-          <td><%= @trip.destination_history[n][0][2] %></td>
+          <td><%= @trip.destination_history[n] %></td>
       </tr>
   <% end %>
   </tbody>

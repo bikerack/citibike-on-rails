@@ -2,8 +2,7 @@ class Trip < ActiveRecord::Base
   belongs_to :origin
   belongs_to :destination
   
-  @@db = ActiveRecord::Base.connection
-  
+
   def start_time(seconds = 5.minutes)
     @time = self.origin.created_at
     Time.at((@time.to_f / seconds).round * seconds)
@@ -52,16 +51,17 @@ class Trip < ActiveRecord::Base
       cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{rollback(56, 15).to_s[0..18]}\'"
       # @@db.execute(cmd)
       # raise cmd.inspect
-      @@db.execute(cmd)
+      # raise cmd.inspect
+      connection.execute(cmd).field_values("bikes").join
     end
   end
 
   def destination_history
     Station.near([self.destination.latitude, self.destination.longitude], 0.25).collect do |station| 
-      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{rollback(56,30).to_s[0..-7].gsub(' ','T').concat('+00:00')}\'"
+      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{rollback(56,30).to_s[0..18]}\'"
       # @@db.execute(cmd)
       #raise cmd.inspect
-      @@db.execute(cmd)
+      connection.execute(cmd).field_values("free").join
     end
   end 
 
