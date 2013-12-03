@@ -56,14 +56,14 @@ class Trip < ActiveRecord::Base
 
   def origin_history(min)
     origin_stations.collect do |station| 
-      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{rollback(56, min).to_s[0..18]}\'"
+      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{rollback(70, min).to_s[0..18]}\'"
       connection.execute(cmd).field_values("bikes").join
     end
   end
 
   def destination_history(min)
     destination_stations.collect do |station| 
-      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{rollback(56,min).to_s[0..18]}\'"
+      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{rollback(70,min).to_s[0..18]}\'"
       connection.execute(cmd).field_values("free").join
     end
   end 
