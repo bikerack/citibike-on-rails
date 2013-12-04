@@ -59,15 +59,15 @@ class TripsController < ApplicationController
     @trip = Trip.new(:origin_id => @origin.id, :destination_id => @destination.id)
     @trip.save   
 
-    respond_to do |format|
-      if @trip.save
-        format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @trip }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @trip.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @trip.save
+    #     format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
+    #     format.json { render action: 'show', status: :created, location: @trip }
+    #   else
+    #     format.html { render action: 'new' }
+    #     format.json { render json: @trip.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /trips/1

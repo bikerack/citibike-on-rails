@@ -8,11 +8,11 @@ class Trip < ActiveRecord::Base
   end
 
   def origin_stations
-    Station.near([self.origin.latitude, self.origin.longitude], 0.25)
+    Station.near([self.origin.latitude, self.origin.longitude], 100).limit(5)
   end
 
   def destination_stations
-    Station.near([self.destination.latitude, self.destination.longitude], 0.25)
+    Station.near([self.destination.latitude, self.destination.longitude], 100).limit(5)
   end
 
 
