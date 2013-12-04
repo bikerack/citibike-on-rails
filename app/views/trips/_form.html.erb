@@ -44,9 +44,9 @@
 
 
   <form class="form-signin">
-    <h2 class="form-signin-heading text-center">Where do you want to go?</h2>
+    <h2 class="form-signin-heading text-center">Choose a</h2>
     <%= f.fields_for :destination, Destination.new do |destination_form| %>
-      <%= destination_form.text_field :address, :class => "form-control text-center", :placeholder => "Destination" %>
+      <%= destination_form.text_field :address, :class => "form-control text-center", :placeholder => "destination" %>
     <% end %>
     <%= f.submit 'GO!!', :class => 'btn btn-lg btn-primary btn-block' %>
   </form>
