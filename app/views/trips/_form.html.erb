@@ -43,15 +43,13 @@
   </div>
 
 
-  <div class="field">
-    <%= f.label :destination %><br>
+  <form class="form-signin">
+    <h2 class="form-signin-heading">Where do you want to go?</h2>
     <%= f.fields_for :destination, Destination.new do |destination_form| %>
-      <%= destination_form.text_field :address %>
+      <%= destination_form.text_field :address, :class => "form-control", :placeholder => "Destination" %>
     <% end %>
-  </div>
+    <%= f.submit 'GO!!', :class => 'btn btn-lg btn-primary btn-block' %>
+  </form>
 
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
