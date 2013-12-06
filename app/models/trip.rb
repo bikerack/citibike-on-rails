@@ -54,17 +54,41 @@ class Trip < ActiveRecord::Base
        start_time - roll_days.days + roll_minutes.minutes
   end
 
+
+  def multi_rollback(weeks, bump, min)
+    n=0
+    string=""
+    days = 7
+    while n < weeks
+      if n != weeks-1
+        cmd="\'#{rollback(bump + days, min).to_s[0..18]}\',"
+        string << cmd
+        n+=1
+        days+=7
+      else
+        cmd="\'#{rollback(bump + days, min).to_s[0..18]}\'"
+        string << cmd
+        n+=1
+      end
+    end
+    string
+  end
+
   def origin_history(min)
     origin_stations.collect do |station| 
-      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{rollback(70, min).to_s[0..18]}\'"
-      connection.execute(cmd).field_values("bikes").join
+      # cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time IN (\'#{rollback(70, min).to_s[0..18]}\', \'#{rollback(77, min).to_s[0..18]}\')"
+      # connection.execute(cmd).field_values("bikes").join
+      cmd = "SELECT AVG(bikes) FROM station_#{station.station_id} WHERE station_time IN (#{multi_rollback(12, 63, min)})"
+      connection.execute(cmd).field_values("avg").join.to_i
     end
   end
 
   def destination_history(min)
     destination_stations.collect do |station| 
-      cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{rollback(70,min).to_s[0..18]}\'"
-      connection.execute(cmd).field_values("free").join
+      # cmd= "SELECT * FROM station_#{station.station_id} WHERE station_time = \'#{rollback(70,min).to_s[0..18]}\'"
+      # connection.execute(cmd).field_values("free").join
+      cmd = "SELECT AVG(free) FROM station_#{station.station_id} WHERE station_time IN (#{multi_rollback(12, 63, min)})"
+      connection.execute(cmd).field_values("avg").join.to_i
     end
   end 
 

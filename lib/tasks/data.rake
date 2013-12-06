@@ -1,7 +1,7 @@
 namespace :data do
   desc "Add historical station data to database"
   task :station => :environment do
-    StationParse.parse
+    StationParser.parse
   end
 
   desc "Add current station data to database"
