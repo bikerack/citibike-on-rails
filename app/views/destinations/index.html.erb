@@ -6,10 +6,10 @@
       <th>Address</th>
       <th>Latitude</th>
       <th>Longitude</th>
-      <th>Station</th>
+<!--       <th>Station</th> -->
       <th></th>
-      <th></th>
-      <th></th>
+<!--       <th></th>
+      <th></th> -->
     </tr>
   </thead>
 
@@ -19,10 +19,10 @@
         <td><%= destination.address %></td>
         <td><%= destination.latitude %></td>
         <td><%= destination.longitude %></td>
-        <td><%= destination.station %></td>
+        <!-- <td><#%= destination.station %></td> -->
         <td><%= link_to 'Show', destination %></td>
-        <td><%= link_to 'Edit', edit_destination_path(destination) %></td>
-        <td><%= link_to 'Destroy', destination, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!-- <td><#%= link_to 'Edit', edit_destination_path(destination) %></td>
+        <td><#%= link_to 'Destroy', destination, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
     <% end %>
   </tbody>

@@ -18,8 +18,8 @@ class DestinationsController < ApplicationController
   end
 
   # GET /destinations/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # POST /destinations
   # POST /destinations.json
@@ -39,27 +39,27 @@ class DestinationsController < ApplicationController
 
   # PATCH/PUT /destinations/1
   # PATCH/PUT /destinations/1.json
-  def update
-    respond_to do |format|
-      if @destination.update(destination_params)
-        format.html { redirect_to @destination, notice: 'Destination was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @destination.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @destination.update(destination_params)
+  #       format.html { redirect_to @destination, notice: 'Destination was successfully updated.' }
+  #       format.json { head :no_content }
+  #     else
+  #       format.html { render action: 'edit' }
+  #       format.json { render json: @destination.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /destinations/1
   # DELETE /destinations/1.json
-  def destroy
-    @destination.destroy
-    respond_to do |format|
-      format.html { redirect_to destinations_url }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @destination.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to destinations_url }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

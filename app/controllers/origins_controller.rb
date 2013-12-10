@@ -39,27 +39,27 @@ class OriginsController < ApplicationController
 
   # PATCH/PUT /origins/1
   # PATCH/PUT /origins/1.json
-  def update
-    respond_to do |format|
-      if @origin.update(origin_params)
-        format.html { redirect_to @origin, notice: 'Origin was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @origin.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @origin.update(origin_params)
+  #       format.html { redirect_to @origin, notice: 'Origin was successfully updated.' }
+  #       format.json { head :no_content }
+  #     else
+  #       format.html { render action: 'edit' }
+  #       format.json { render json: @origin.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /origins/1
   # DELETE /origins/1.json
-  def destroy
-    @origin.destroy
-    respond_to do |format|
-      format.html { redirect_to origins_url }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @origin.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to origins_url }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
