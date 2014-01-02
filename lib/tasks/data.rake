@@ -6,7 +6,7 @@ namespace :data do
 
   desc "Add current station data to database"
   task :json => :environment do
-    # StationParse.parse
+    CitiJSONParser.parse
   end
 
 

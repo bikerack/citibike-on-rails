@@ -2,6 +2,9 @@ class Trip < ActiveRecord::Base
   belongs_to :origin
   belongs_to :destination
 
+
+  CITI_JSON = URI.parse('http://citibikenyc.com/stations/json')
+
   def start_time(seconds = 5.minutes)
     @time = self.origin.created_at
     Time.at((@time.to_f / seconds).round * seconds)
@@ -17,8 +20,7 @@ class Trip < ActiveRecord::Base
 
 
   def origin_bike_status
-    uri = URI.parse('http://citibikenyc.com/stations/json')
-    json = uri.read
+    json = CITI_JSON.read
     hash = JSON.parse(json)
     array = hash["stationBeanList"]
     bikes =[]
@@ -34,8 +36,7 @@ class Trip < ActiveRecord::Base
   end
 
   def destination_rack_status
-    uri = URI.parse('http://citibikenyc.com/stations/json')
-    json = uri.read
+    json = CITI_JSON.read
     hash = JSON.parse(json)
     array = hash["stationBeanList"]
     racks =[]

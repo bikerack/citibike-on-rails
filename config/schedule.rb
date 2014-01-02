@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-# every 5.minutes do
-#   rake "my:rake:task"
-# end
+every 5.minutes do
+  rake "data:json"
+end
