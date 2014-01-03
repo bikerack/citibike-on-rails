@@ -1,6 +1,9 @@
 set :application, "citibike_on_rails"
 set :repository,  "git@github.com:bikerack/citibike-on-rails.git"
 
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
+
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 

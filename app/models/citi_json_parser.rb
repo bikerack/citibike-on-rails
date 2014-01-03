@@ -1,26 +1,18 @@
 class CitiJSONParser
 
-  def initialize
-    @time = Time.now
-  end
-
   CITI_JSON = URI.parse('http://citibikenyc.com/stations/json')
 
+  CURRENT_TIME = Time.at((Time.now.to_f / 5.minutes).round * 5.minutes)
+
   def self.parse
-    begin
-      json = CITI_JSON.read
-      hash = JSON.parse(json)
-      array = hash["stationBeanList"]
-      array.each do |station|
-        bikes =  station["availableBikes"]
-        free = station["availableDocks"] 
-        station_time = current_station_time
-        number = station["id"]
-        build_row(number, bikes, free, station_time)
-      end
-    rescue
-    end
+    new.call
   end
+
+
+  def current_station_time(seconds = 5.minutes)
+    Time.at((Time.now.to_f / seconds).round * seconds)
+  end
+
 
   def build_row(number, bikes, free, station_time)
     begin
@@ -30,9 +22,20 @@ class CitiJSONParser
     end
   end
 
-  def current_station_time(seconds = 5.minutes)
-    Time.at((@time.to_f / seconds).round * seconds)
+  def call
+    begin
+      json = CITI_JSON.read
+      hash = JSON.parse(json)
+      array = hash["stationBeanList"]
+      array.each do |station|
+        bikes =  station["availableBikes"]
+        free = station["availableDocks"] 
+        station_time = CURRENT_TIME
+        number = station["id"]
+        build_row(number, bikes, free, station_time)
+      end
+    rescue
+    end
   end
-
 
 end
