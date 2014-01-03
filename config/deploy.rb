@@ -3,6 +3,7 @@ set :repository,  "git@github.com:bikerack/citibike-on-rails.git"
 
 set :whenever_command, "bundle exec whenever"
 require "whenever/capistrano"
+set :default_shell, '/bin/bash -l'
 # require "rvm/capistrano"
 # require "bundler/capistrano"
 
