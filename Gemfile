@@ -53,7 +53,7 @@ end
 
 # Use Capistrano for deployment
 gem 'capistrano',  '2.15.5', group: :development
-gem 'rvm-capistrano', group: :development
+# gem 'rvm-capistrano', group: :development
 # gem 'capistrano-bundler', group: :development
 
 # Use debugger
