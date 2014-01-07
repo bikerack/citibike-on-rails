@@ -13,7 +13,7 @@ class StationParser
  
   def build_row(number, bikes, free, station_time)
     begin
-    cmd = "INSERT INTO station_#{number} (bikes, free, station_time) VALUES (#{bikes},#{free},TIMESTAMP \'#{station_time}\')"
+    cmd = "INSERT INTO station_#{number} (bikes, free, station_time) VALUES (#{bikes},#{free},DATETIME \'#{station_time}\')"
     ActiveRecord::Base.connection.execute(cmd)
     rescue
     end

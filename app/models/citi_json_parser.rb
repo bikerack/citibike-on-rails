@@ -16,7 +16,7 @@ class CitiJSONParser
 
   def build_row(number, bikes, free, station_time)
     begin
-    cmd = "INSERT INTO station_#{number} (bikes, free, station_time) VALUES (#{bikes},#{free},TIMESTAMP \'#{station_time}\')"
+    cmd = "INSERT INTO station_#{number} (bikes, free, station_time) VALUES (#{bikes},#{free},'#{station_time}')"
     ActiveRecord::Base.connection.execute(cmd)
     rescue
     end
@@ -30,7 +30,7 @@ class CitiJSONParser
       array.each do |station|
         bikes =  station["availableBikes"]
         free = station["availableDocks"] 
-        station_time = CURRENT_TIME
+        station_time = CURRENT_TIME.to_s[0..18].gsub(' ','T')
         number = station["id"]
         build_row(number, bikes, free, station_time)
       end
